@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
     <title>Pour Raphaël ❤️</title>
     <style>
         body {
-            background-color: #b89782; /* Ton beige taupe */
+            background-color: #b89782;
             margin: 0;
             height: 100vh;
             display: flex;
@@ -28,13 +27,15 @@
 
         .enveloppe-wrapper {
             position: relative;
-            width: 600px; /* Taille adaptée à tes dessins */
-            height: 420px;
+            width: 450px; /* On ajuste à la taille de tes dessins */
+            height: 320px;
             cursor: pointer;
-            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Le corps rose avec tes petits persos (Lapin, Ours, etc.) */
+        /* Le corps rose (IMG_0296) */
         .corps-enveloppe {
             position: absolute;
             bottom: 0;
@@ -43,67 +44,58 @@
             background-image: url('fond-enveloppe.png');
             background-size: contain;
             background-repeat: no-repeat;
-            z-index: 3; /* Devant la lettre */
+            background-position: center bottom;
+            z-index: 3;
         }
 
-        /* Le rabat violet (Le triangle du haut) */
+        /* Le rabat violet (IMG_0295) */
         .rabat {
             position: absolute;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 50%; /* Il couvre le haut */
+            height: 100%;
             background-image: url('rabat.png');
             background-size: contain;
             background-repeat: no-repeat;
-            transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 4; /* Tout devant quand c'est fermé */
+            background-position: center top;
+            transform-origin: center 30%; /* Pivot au niveau de la ligne de pliure */
+            transition: transform 0.8s ease;
+            z-index: 4;
         }
 
-        /* La lettre blanche qui sort */
+        /* La lettre blanche */
         .lettre {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 520px;
-            height: 320px;
+            bottom: 10px;
+            width: 90%;
+            height: 80%;
             background-color: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 5px;
             transition: transform 0.8s ease;
-            z-index: 2; /* Entre le fond et le devant */
+            z-index: 2; /* Derrière le corps rose */
             text-align: center;
             box-sizing: border-box;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        /* Animation quand on clique */
+        /* Animation d'ouverture */
         .open .rabat {
-            transform: rotateX(180deg);
-            z-index: 1; /* Il bascule derrière la lettre */
+            transform: rotateX(160deg);
+            z-index: 1;
         }
 
         .open .lettre {
-            transform: translate(-50%, -180px); /* Elle monte */
+            transform: translateY(-150px); /* Elle monte droit */
+            z-index: 2;
         }
 
-        /* Texte à l'intérieur de la lettre */
-        .lettre h1 { font-size: 2.5em; color: #ffb3c1; margin: 10px 0; }
-        .lettre p { font-size: 1.6em; color: #b89782; margin: 5px 0; }
-        .signature { font-size: 1em; color: #d1b39e; margin-top: 20px; font-family: sans-serif; }
-
-        .heart {
-            font-size: 40px;
-            animation: beat 1s infinite;
-            margin-bottom: 10px;
-        }
-
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
+        .lettre h1 { font-size: 1.8em; color: #ffb3c1; margin: 5px 0; }
+        .lettre p { font-size: 1.3em; color: #b89782; margin: 3px 0; }
+        .heart { font-size: 30px; margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -118,7 +110,6 @@
             <h1>Joyeuse Saint Valentin</h1>
             <p>Tu es mon bonheur de chaque jour.</p>
             <p>Je t'aime infiniment.</p>
-            <div class="signature">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</div>
         </div>
     </div>
 
