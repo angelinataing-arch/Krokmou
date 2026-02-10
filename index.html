@@ -2,48 +2,130 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Raphaël</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Pour Raphaël ❤️</title>
     <style>
         body {
-            background-color: #fff0f3; /* Un rose très pâle */
+            background-color: #b89782; /* Ton beige taupe */
+            margin: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            color: #ff4d6d;
+            font-family: 'Brush Script MT', cursive;
+            overflow: hidden;
         }
-        .container {
+
+        .titre-haut {
+            position: absolute;
+            top: 40px;
+            font-size: 4em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .enveloppe-wrapper {
+            position: relative;
+            width: 600px; /* Taille adaptée à tes dessins */
+            height: 420px;
+            cursor: pointer;
+            margin-top: 50px;
+        }
+
+        /* Le corps rose avec tes petits persos (Lapin, Ours, etc.) */
+        .corps-enveloppe {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('fond-enveloppe.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 3; /* Devant la lettre */
+        }
+
+        /* Le rabat violet (Le triangle du haut) */
+        .rabat {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%; /* Il couvre le haut */
+            background-image: url('rabat.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 4; /* Tout devant quand c'est fermé */
+        }
+
+        /* La lettre blanche qui sort */
+        .lettre {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 520px;
+            height: 320px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            transition: transform 0.8s ease;
+            z-index: 2; /* Entre le fond et le devant */
             text-align: center;
-            padding: 20px;
-            border: 2px solid #ffb3c1;
-            border-radius: 20px;
-            background: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        h1 { font-size: 2.5em; }
+
+        /* Animation quand on clique */
+        .open .rabat {
+            transform: rotateX(180deg);
+            z-index: 1; /* Il bascule derrière la lettre */
+        }
+
+        .open .lettre {
+            transform: translate(-50%, -180px); /* Elle monte */
+        }
+
+        /* Texte à l'intérieur de la lettre */
+        .lettre h1 { font-size: 2.5em; color: #ffb3c1; margin: 10px 0; }
+        .lettre p { font-size: 1.6em; color: #b89782; margin: 5px 0; }
+        .signature { font-size: 1em; color: #d1b39e; margin-top: 20px; font-family: sans-serif; }
+
         .heart {
-            font-size: 50px;
+            font-size: 40px;
             animation: beat 1s infinite;
+            margin-bottom: 10px;
         }
+
         @keyframes beat {
-            0% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
         }
-        p { font-size: 1.2em; color: #590d22; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="heart">❤️</div>
-        <h1>Joyeuse Saint Valentin Raphaël❤️</h1>
-        <p>j'avoue je me suis aidé de gemini, j'espère que tu apprécies quand même</p>
-        <p><i>Je t'aime</i></p>
+    <div class="titre-haut">Raphaël</div>
+
+    <div class="enveloppe-wrapper" id="mail" onclick="toggleMail()">
+        <div class="rabat"></div>
+        <div class="corps-enveloppe"></div>
+        <div class="lettre">
+            <div class="heart">❤️</div>
+            <h1>Joyeuse Saint Valentin</h1>
+            <p>Tu es mon bonheur de chaque jour.</p>
+            <p>Je t'aime infiniment.</p>
+            <div class="signature">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</div>
+        </div>
     </div>
 
+    <script>
+        function toggleMail() {
+            document.getElementById('mail').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
