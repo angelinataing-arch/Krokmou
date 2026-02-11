@@ -17,21 +17,23 @@
             overflow: hidden;
         }
 
-        .titre-prenom {
-            font-size: 3.5em;
-            color: white;
-            margin-bottom: -60px; /* On le descend très proche de l'enveloppe */
-            z-index: 10;
-        }
-
         .enveloppe-wrapper {
             position: relative;
-            width: 700px; 
+            width: 800px; /* On garde une zone large pour tes dessins */
             height: 500px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        /* Raphaël : Placé juste au-dessus du pli de l'enveloppe */
+        .titre-prenom {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: -110px; /* On le descend très bas pour toucher l'enveloppe */
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .corps-enveloppe {
@@ -41,7 +43,7 @@
             background-image: url('fond-enveloppe.png');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: center bottom;
             z-index: 3;
         }
 
@@ -52,21 +54,21 @@
             background-image: url('rabat.png');
             background-size: contain;
             background-repeat: no-repeat;
-            /* ON FORCE LE RABAT À REMONTER BEAUCOUP PLUS HAUT */
-            background-position: center 80px; 
-            transform-origin: center 40%; 
+            /* ON REMONTE LE RABAT BEAUCOUP PLUS HAUT */
+            background-position: center 100px; 
+            transform-origin: center 42%; 
             transition: transform 0.8s ease;
             z-index: 4;
         }
 
         .lettre {
             position: absolute;
-            /* TAILLE DE LA LETTRE : Elle fait presque toute l'enveloppe */
-            width: 600px; 
-            height: 380px;
+            /* TAILLE AGRANDIE : Elle remplit l'enveloppe rose */
+            width: 650px; 
+            height: 400px;
             background-color: white;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 10px;
             transition: transform 0.8s ease;
             z-index: 2;
             text-align: center;
@@ -77,31 +79,31 @@
             justify-content: center;
         }
 
-        /* Animation */
+        /* Animation d'ouverture */
         .open .rabat {
             transform: rotateX(150deg);
             z-index: 1;
         }
 
         .open .lettre {
-            transform: translateY(-220px); /* Elle sort bien haut */
+            transform: translateY(-250px); /* Elle sort bien de l'enveloppe */
             z-index: 5;
         }
 
-        .lettre h1 { font-size: 2.2em; color: #ffb3c1; margin: 10px 0; }
-        .lettre p { font-size: 1.5em; color: #b89782; margin: 5px 0; }
+        .lettre h1 { font-size: 2.5em; color: #ffb3c1; margin: 10px 0; }
+        .lettre p { font-size: 1.8em; color: #b89782; margin: 5px 0; }
     </style>
 </head>
 <body>
 
-    <div class="titre-prenom">Raphaël</div>
+    <div class="titre-prenom">Un nouveau courrier !!</div>
 
     <div class="enveloppe-wrapper" id="mail" onclick="toggleMail()">
         <div class="lettre">
             <p>❤️</p>
             <h1>Joyeuse Saint Valentin</h1>
-            <p>Tu es mon bonheur de chaque jour.</p>
-            <p>Je t'aime infiniment.</p>
+            <p>Je t'aime Raphaël</p>
+            <p>J'avoue je me suis aidée de gemini mais quand même hihi</p>
         </div>
         <div class="rabat"></div>
         <div class="corps-enveloppe"></div>
