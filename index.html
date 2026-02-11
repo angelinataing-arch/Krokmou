@@ -12,28 +12,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centre l'enveloppe verticalement */
+            justify-content: center;
             font-family: 'Brush Script MT', cursive;
             overflow: hidden;
         }
 
+        .titre-prenom {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: -60px; /* On le descend très proche de l'enveloppe */
+            z-index: 10;
+        }
+
         .enveloppe-wrapper {
             position: relative;
-            width: 800px; /* Taille adaptée à tes dessins haute qualité */
-            height: 600px;
+            width: 700px; 
+            height: 500px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        /* Titre "Raphaël" placé juste au-dessus de l'enveloppe */
-        .titre-prenom {
-            font-size: 4em;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: -40px; /* Le rapproche de l'enveloppe */
-            z-index: 10;
         }
 
         .corps-enveloppe {
@@ -54,37 +52,39 @@
             background-image: url('rabat.png');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: center 180px; /* ON REMONTE LE RABAT ICI */
-            transform-origin: center 48%; /* Point de pivot ajusté à ton dessin */
+            /* ON FORCE LE RABAT À REMONTER BEAUCOUP PLUS HAUT */
+            background-position: center 80px; 
+            transform-origin: center 40%; 
             transition: transform 0.8s ease;
             z-index: 4;
         }
 
         .lettre {
             position: absolute;
-            width: 500px;
-            height: 300px;
+            /* TAILLE DE LA LETTRE : Elle fait presque toute l'enveloppe */
+            width: 600px; 
+            height: 380px;
             background-color: white;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 5px;
             transition: transform 0.8s ease;
             z-index: 2;
             text-align: center;
             box-sizing: border-box;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* Animation d'ouverture */
+        /* Animation */
         .open .rabat {
             transform: rotateX(150deg);
             z-index: 1;
         }
 
         .open .lettre {
-            transform: translateY(-180px); /* La lettre sort vers le haut */
+            transform: translateY(-220px); /* Elle sort bien haut */
             z-index: 5;
         }
 
