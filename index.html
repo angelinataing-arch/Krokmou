@@ -17,26 +17,25 @@
             overflow: hidden;
         }
 
-        /* Titre descendu juste au-dessus de l'enveloppe */
         .titre-prenom {
             font-size: 3.8em;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: -115px; /* Ajustement pour qu'il frôle le haut */
+            /* On descend Raphaël pour qu'il soit juste au-dessus du pli */
+            margin-bottom: -130px; 
             z-index: 10;
         }
 
         .enveloppe-wrapper {
             position: relative;
-            width: 800px; 
-            height: 550px;
+            width: 850px; 
+            height: 600px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Corps de l'enveloppe rose */
         .corps-enveloppe {
             position: absolute;
             width: 100%;
@@ -48,7 +47,6 @@
             z-index: 3;
         }
 
-        /* Rabat violet - REMONTÉ VERS LE HAUT */
         .rabat {
             position: absolute;
             width: 100%;
@@ -56,21 +54,22 @@
             background-image: url('rabat.png');
             background-size: contain;
             background-repeat: no-repeat;
-            /* On remonte ici : la valeur 110px propulse le rabat vers le haut */
-            background-position: center 110px; 
-            transform-origin: center 44%; 
+            /* LE RÉGLAGE CLÉ : On utilise une valeur négative pour forcer la remontée */
+            background-position: center -60px; 
+            /* On ajuste le point de pivot pour que l'animation reste naturelle */
+            transform-origin: center 25%; 
             transition: transform 0.8s ease;
             z-index: 4;
         }
 
-        /* Lettre blanche - AGRANDIE pour matcher l'enveloppe */
         .lettre {
             position: absolute;
-            width: 710px; /* Presque la largeur totale du dessin */
-            height: 420px; /* Presque la hauteur totale */
+            /* LA LETTRE FAIT MAINTENANT LA TAILLE DE L'ENVELOPPE */
+            width: 750px; 
+            height: 450px;
             background-color: white;
-            padding: 30px;
-            border-radius: 8px;
+            padding: 40px;
+            border-radius: 5px;
             transition: transform 0.8s ease;
             z-index: 2;
             text-align: center;
@@ -81,19 +80,18 @@
             justify-content: center;
         }
 
-        /* Animation d'ouverture */
         .open .rabat {
-            transform: rotateX(155deg);
+            transform: rotateX(150deg);
             z-index: 1;
         }
 
         .open .lettre {
-            transform: translateY(-280px); /* Elle sort bien haut */
+            transform: translateY(-300px);
             z-index: 5;
         }
 
-        .lettre h1 { font-size: 2.5em; color: #ffb3c1; margin: 10px 0; }
-        .lettre p { font-size: 1.8em; color: #b89782; margin: 5px 0; }
+        .lettre h1 { font-size: 2.8em; color: #ffb3c1; margin: 10px 0; }
+        .lettre p { font-size: 2em; color: #b89782; margin: 5px 0; }
     </style>
 </head>
 <body>
