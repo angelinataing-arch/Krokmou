@@ -17,40 +17,43 @@
             overflow: hidden;
         }
 
+        /* Raphaël : On le place par rapport au centre pour qu'il ne bouge plus */
         .titre-prenom {
             font-size: 3.5em;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: -160px; /* On le descend vraiment sur l'enveloppe */
+            position: absolute;
+            top: 15%; 
             z-index: 10;
         }
 
         .enveloppe-wrapper {
             position: relative;
-            width: 900px; 
-            height: 600px;
+            width: 800px;
+            height: 500px;
             cursor: pointer;
         }
 
-        /* TECHNIQUE LOUPE : On force les images à se cadrer sur le dessin */
-        .img-layer {
+        .corps-enveloppe {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Recadre sur le contenu pour supprimer le vide */
+            background: url('fond-enveloppe.png') no-repeat center;
+            background-size: contain;
+            z-index: 3;
         }
 
         .rabat {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('rabat.png') no-repeat center;
+            background-size: contain;
+            /* AJUSTE CE CHIFFRE (px) pour descendre le rabat sur l'enveloppe */
+            top: 85px; 
             z-index: 4;
-            transition: transform 0.8s ease;
-            transform-origin: center 35%; 
-            margin-top: 150px; /* ON FORCE LE RABAT À DESCENDRE ICI */
-        }
-
-        .corps {
-            z-index: 3;
+            transition: all 0.6s ease;
+            transform-origin: center 40%;
         }
 
         .lettre {
@@ -58,48 +61,48 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -40%);
-            width: 780px; /* Lettre géante pour Raphaël */
-            height: 480px;
-            background-color: white;
+            /* TAILLE DE LA LETTRE : Elle doit être grande pour boucher les trous */
+            width: 650px; 
+            height: 400px;
+            background: white;
             padding: 40px;
-            border-radius: 5px;
-            transition: transform 0.8s ease;
+            border-radius: 10px;
             z-index: 2;
             text-align: center;
-            box-sizing: border-box;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: all 0.6s ease;
         }
 
         .open .rabat {
-            transform: translateY(-300px) rotateX(160deg);
+            transform: translateY(-200px) rotateX(140deg);
             opacity: 0;
         }
 
         .open .lettre {
-            transform: translate(-50%, -100%);
-            z-index: 20;
+            transform: translate(-50%, -90%);
+            z-index: 5;
         }
 
-        h1 { font-size: 2.8em; color: #ffb3c1; margin: 10px 0; }
-        p { font-size: 2em; color: #b89782; margin: 5px 0; }
+        h1 { font-size: 2.5em; color: #ffb3c1; margin: 10px 0; }
+        p { font-size: 1.8em; color: #b89782; }
     </style>
 </head>
 <body>
 
     <div class="titre-prenom">Raphaël</div>
 
-    <div class="enveloppe-wrapper" onclick="this.classList.toggle('open')">
+    <div class="enveloppe-wrapper" id="mail" onclick="this.classList.toggle('open')">
         <div class="lettre">
             <p>❤️</p>
             <h1>Joyeuse Saint Valentin</h1>
             <p>Tu es mon bonheur de chaque jour.</p>
             <p>Je t'aime infiniment.</p>
         </div>
-        <img src="rabat.png" class="img-layer rabat">
-        <img src="fond-enveloppe.png" class="img-layer corps">
+        <div class="rabat"></div>
+        <div class="corps-enveloppe"></div>
     </div>
 
 </body>
