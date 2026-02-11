@@ -20,7 +20,7 @@
         .titre-prenom {
             font-size: 3.5em;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             z-index: 10;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
@@ -28,11 +28,10 @@
         .enveloppe-wrapper {
             position: relative;
             width: 600px; 
-            height: 400px;
+            height: 420px;
             cursor: pointer;
         }
 
-        /* Le corps rose bien calé au fond */
         .corps-enveloppe {
             position: absolute;
             bottom: 0;
@@ -43,10 +42,10 @@
             z-index: 3;
         }
 
-        /* Le rabat violet avec le "chevauchement" pour enlever le blanc */
         .rabat {
             position: absolute;
-            top: 2px; /* On le descend de 2 pixels pour qu'il touche bien l'enveloppe */
+            /* ON BAISSE LE RABAT ICI : change 25px par 30px si c'est pas assez */
+            top: 28px; 
             width: 100%;
             height: 65%; 
             background: url('rabat.png') no-repeat center top;
@@ -58,10 +57,11 @@
 
         .lettre {
             position: absolute;
-            bottom: 10px;
+            /* LA LETTRE EST PLUS HAUTE : pour ne pas dépasser en bas */
+            bottom: 40px; 
             left: 5%;
             width: 90%;
-            height: 85%;
+            height: 80%;
             background: white;
             padding: 30px;
             border-radius: 5px;
@@ -81,7 +81,7 @@
         }
 
         .open .lettre {
-            transform: translateY(-200px);
+            transform: translateY(-220px);
             z-index: 5;
         }
 
@@ -99,6 +99,7 @@
             <h1>Joyeuse Saint Valentin</h1>
             <p>Tu es mon bonheur de chaque jour.</p>
             <p>Je t'aime infiniment.</p>
+            <p style="font-size: 0.8em; margin-top: 15px;">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</p>
         </div>
         <div class="rabat"></div>
         <div class="corps-enveloppe"></div>
