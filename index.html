@@ -17,81 +17,83 @@
             overflow: hidden;
         }
 
+        /* Titre descendu pour être juste au-dessus de l'enveloppe rose */
         .titre-prenom {
-            font-size: 3.8em;
+            font-size: 3.5em;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            /* On descend Raphaël pour qu'il soit juste au-dessus du pli */
-            margin-bottom: -130px; 
+            margin-bottom: -150px; /* On le descend très bas */
             z-index: 10;
         }
 
         .enveloppe-wrapper {
             position: relative;
-            width: 850px; 
-            height: 600px;
+            width: 100vw;
+            height: 100vh;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .corps-enveloppe {
+        /* On traite les images comme des calques plein écran pour qu'elles s'alignent */
+        .corps-enveloppe, .rabat {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('fond-enveloppe.png');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: center bottom;
+            background-position: center;
+        }
+
+        .corps-enveloppe {
+            background-image: url('fond-enveloppe.png');
             z-index: 3;
         }
 
         .rabat {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             background-image: url('rabat.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            /* LE RÉGLAGE CLÉ : On utilise une valeur négative pour forcer la remontée */
-            background-position: center -30px; 
-            /* On ajuste le point de pivot pour que l'animation reste naturelle */
-            transform-origin: center 25%; 
-            transition: transform 0.8s ease;
             z-index: 4;
+            /* ON BAISSE LE RABAT : On change la valeur ici pour qu'il ferme l'enveloppe */
+            margin-top: 130px; 
+            transition: transform 0.8s ease;
+            transform-origin: center 35%; 
         }
 
         .lettre {
             position: absolute;
-            /* LA LETTRE FAIT MAINTENANT LA TAILLE DE L'ENVELOPPE */
-            width: 750px; 
-            height: 450px;
+            /* TAILLE AGRANDIE : Elle fait presque la taille de ton dessin */
+            width: 850px; 
+            height: 550px;
             background-color: white;
             padding: 40px;
             border-radius: 5px;
             transition: transform 0.8s ease;
-            z-index: 2;
+            z-index: 2; /* Derrière au début */
             text-align: center;
             box-sizing: border-box;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
+        /* Animation d'ouverture */
         .open .rabat {
-            transform: rotateX(150deg);
+            transform: translateY(-200px) rotateX(150deg);
             z-index: 1;
+            opacity: 0.5;
         }
 
         .open .lettre {
             transform: translateY(-300px);
-            z-index: 5;
+            z-index: 5; /* Passe devant tout le monde */
         }
 
-        .lettre h1 { font-size: 2.8em; color: #ffb3c1; margin: 10px 0; }
-        .lettre p { font-size: 2em; color: #b89782; margin: 5px 0; }
+        .lettre h1 { font-size: 3em; color: #ffb3c1; margin: 10px 0; }
+        .lettre p { font-size: 2.2em; color: #b89782; margin: 5px 0; }
     </style>
 </head>
 <body>
