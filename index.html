@@ -20,81 +20,73 @@
         .titre-prenom {
             font-size: 3.5em;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            /* On place le titre par rapport au centre pour qu'il ne bouge plus */
-            position: absolute;
-            top: 15%;
+            margin-bottom: 10px;
             z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .enveloppe-wrapper {
             position: relative;
-            /* On utilise des dimensions qui s'adaptent à ton dessin large */
-            width: 900px;
-            height: 600px;
+            width: 600px; 
+            height: 400px;
             cursor: pointer;
         }
 
-        /* TECHNIQUE CALQUE : Les deux images font 100% de la boîte pour s'aligner pile l'une sur l'autre */
-        .corps-enveloppe, .rabat {
+        /* Le corps rose bien calé au fond */
+        .corps-enveloppe {
             position: absolute;
-            top: 0;
-            left: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
+            background: url('fond-enveloppe.png') no-repeat center bottom;
             background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .corps-enveloppe {
-            background-image: url('fond-enveloppe.png');
             z-index: 3;
         }
 
+        /* Le rabat violet avec le "chevauchement" pour enlever le blanc */
         .rabat {
-            background-image: url('rabat.png');
+            position: absolute;
+            top: 2px; /* On le descend de 2 pixels pour qu'il touche bien l'enveloppe */
+            width: 100%;
+            height: 65%; 
+            background: url('rabat.png') no-repeat center top;
+            background-size: contain;
             z-index: 4;
-            transition: transform 0.8s ease;
-            /* On ajuste le pivot pour que le triangle violet bascule au bon endroit */
-            transform-origin: center 40%;
+            transition: transform 0.6s ease;
+            transform-origin: top;
         }
 
         .lettre {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -40%);
-            /* TAILLE DE LA LETTRE : Elle fait presque la taille de l'enveloppe */
-            width: 800px; 
-            height: 500px;
+            bottom: 10px;
+            left: 5%;
+            width: 90%;
+            height: 85%;
             background: white;
-            padding: 40px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 5px;
             z-index: 2;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.6s ease;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            transition: transform 0.8s ease;
         }
 
-        /* Animation */
         .open .rabat {
-            /* On le fait basculer vers le haut */
-            transform: translateY(-20%) rotateX(160deg);
+            transform: rotateX(160deg);
             z-index: 1;
         }
 
         .open .lettre {
-            /* La lettre monte droit devant tout le monde */
-            transform: translate(-50%, -100%);
+            transform: translateY(-200px);
             z-index: 5;
         }
 
-        h1 { font-size: 2.5em; color: #ffb3c1; margin: 10px 0; }
-        p { font-size: 1.8em; color: #b89782; }
+        h1 { font-size: 2.2em; color: #ffb3c1; margin: 10px 0; }
+        p { font-size: 1.5em; color: #b89782; margin: 5px 0; }
     </style>
 </head>
 <body>
