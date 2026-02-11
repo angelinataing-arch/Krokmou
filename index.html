@@ -17,42 +17,46 @@
             overflow: hidden;
         }
 
-        /* Raphaël : On le place par rapport au centre pour qu'il ne bouge plus */
         .titre-prenom {
             font-size: 3.5em;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            /* On place le titre par rapport au centre pour qu'il ne bouge plus */
             position: absolute;
-            top: 15%; 
+            top: 15%;
             z-index: 10;
         }
 
         .enveloppe-wrapper {
             position: relative;
-            width: 800px;
-            height: 500px;
+            /* On utilise des dimensions qui s'adaptent à ton dessin large */
+            width: 900px;
+            height: 600px;
             cursor: pointer;
         }
 
-        .corps-enveloppe {
+        /* TECHNIQUE CALQUE : Les deux images font 100% de la boîte pour s'aligner pile l'une sur l'autre */
+        .corps-enveloppe, .rabat {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: url('fond-enveloppe.png') no-repeat center;
             background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .corps-enveloppe {
+            background-image: url('fond-enveloppe.png');
             z-index: 3;
         }
 
         .rabat {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('rabat.png') no-repeat center;
-            background-size: contain;
-            /* AJUSTE CE CHIFFRE (px) pour descendre le rabat sur l'enveloppe */
-            top: 85px; 
+            background-image: url('rabat.png');
             z-index: 4;
-            transition: all 0.6s ease;
+            transition: transform 0.8s ease;
+            /* On ajuste le pivot pour que le triangle violet bascule au bon endroit */
             transform-origin: center 40%;
         }
 
@@ -61,28 +65,31 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -40%);
-            /* TAILLE DE LA LETTRE : Elle doit être grande pour boucher les trous */
-            width: 650px; 
-            height: 400px;
+            /* TAILLE DE LA LETTRE : Elle fait presque la taille de l'enveloppe */
+            width: 800px; 
+            height: 500px;
             background: white;
             padding: 40px;
             border-radius: 10px;
             z-index: 2;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            transition: all 0.6s ease;
+            transition: transform 0.8s ease;
         }
 
+        /* Animation */
         .open .rabat {
-            transform: translateY(-200px) rotateX(140deg);
-            opacity: 0;
+            /* On le fait basculer vers le haut */
+            transform: translateY(-20%) rotateX(160deg);
+            z-index: 1;
         }
 
         .open .lettre {
-            transform: translate(-50%, -90%);
+            /* La lettre monte droit devant tout le monde */
+            transform: translate(-50%, -100%);
             z-index: 5;
         }
 
