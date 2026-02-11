@@ -12,86 +12,89 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Centre l'enveloppe verticalement */
             font-family: 'Brush Script MT', cursive;
             overflow: hidden;
         }
 
-        .titre-haut {
-            position: absolute;
-            top: 20px;
-            font-size: 3.5em;
+        .enveloppe-wrapper {
+            position: relative;
+            width: 800px; /* Taille adaptée à tes dessins haute qualité */
+            height: 600px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Titre "Raphaël" placé juste au-dessus de l'enveloppe */
+        .titre-prenom {
+            font-size: 4em;
             color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: -40px; /* Le rapproche de l'enveloppe */
             z-index: 10;
         }
 
-        .enveloppe-wrapper {
-            position: relative;
-            width: 80vw; /* Utilise la largeur de l'écran */
-            max-width: 600px;
-            height: 400px;
-            cursor: pointer;
-        }
-
-        /* On force les images à se superposer parfaitement */
-        .corps-enveloppe, .rabat {
+        .corps-enveloppe {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            background-image: url('fond-enveloppe.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-        }
-
-        .corps-enveloppe {
-            background-image: url('fond-enveloppe.png');
             z-index: 3;
         }
 
         .rabat {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background-image: url('rabat.png');
-            z-index: 4;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center 180px; /* ON REMONTE LE RABAT ICI */
+            transform-origin: center 48%; /* Point de pivot ajusté à ton dessin */
             transition: transform 0.8s ease;
-            transform-origin: center 40%; /* Ajuste le pliage selon ton dessin */
+            z-index: 4;
         }
 
         .lettre {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -40%);
-            width: 70%;
-            height: 60%;
+            width: 500px;
+            height: 300px;
             background-color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             transition: transform 0.8s ease;
             z-index: 2;
             text-align: center;
             box-sizing: border-box;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        /* L'animation magique */
+        /* Animation d'ouverture */
         .open .rabat {
-            transform: translateY(-20%) rotateX(140deg);
+            transform: rotateX(150deg);
             z-index: 1;
         }
 
         .open .lettre {
-            transform: translate(-50%, -100%); /* La lettre monte */
-            z-index: 5; /* Elle passe devant tout le monde */
+            transform: translateY(-180px); /* La lettre sort vers le haut */
+            z-index: 5;
         }
 
-        .lettre h1 { font-size: 1.8em; color: #ffb3c1; margin: 10px 0; }
-        .lettre p { font-size: 1.2em; color: #b89782; }
+        .lettre h1 { font-size: 2.2em; color: #ffb3c1; margin: 10px 0; }
+        .lettre p { font-size: 1.5em; color: #b89782; margin: 5px 0; }
     </style>
 </head>
 <body>
 
-    <div class="titre-haut">Raphaël</div>
+    <div class="titre-prenom">Raphaël</div>
 
     <div class="enveloppe-wrapper" id="mail" onclick="toggleMail()">
         <div class="lettre">
