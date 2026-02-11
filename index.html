@@ -44,8 +44,8 @@
 
         .rabat {
             position: absolute;
-            /* ON BAISSE LE RABAT ICI : change 25px par 30px si c'est pas assez */
-            top: 28px; 
+            /* J'AI BAISSÉ À 45px POUR BIEN RECOUVRIR LE BLANC */
+            top: 45px; 
             width: 100%;
             height: 65%; 
             background: url('rabat.png') no-repeat center top;
@@ -57,11 +57,11 @@
 
         .lettre {
             position: absolute;
-            /* LA LETTRE EST PLUS HAUTE : pour ne pas dépasser en bas */
-            bottom: 40px; 
-            left: 5%;
-            width: 90%;
-            height: 80%;
+            /* ON REMONTE LA LETTRE POUR QU'ELLE NE DÉPASSE PLUS EN BAS */
+            bottom: 60px; 
+            left: 7%;
+            width: 86%;
+            height: 75%;
             background: white;
             padding: 30px;
             border-radius: 5px;
@@ -85,8 +85,8 @@
             z-index: 5;
         }
 
-        h1 { font-size: 2.2em; color: #ffb3c1; margin: 10px 0; }
-        p { font-size: 1.5em; color: #b89782; margin: 5px 0; }
+        h1 { font-size: 2em; color: #ffb3c1; margin: 10px 0; }
+        p { font-size: 1.4em; color: #b89782; margin: 5px 0; }
     </style>
 </head>
 <body>
@@ -99,7 +99,7 @@
             <h1>Joyeuse Saint Valentin</h1>
             <p>Tu es mon bonheur de chaque jour.</p>
             <p>Je t'aime infiniment.</p>
-            <p style="font-size: 0.8em; margin-top: 15px;">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</p>
+            <p style="font-size: 0.8em; margin-top: 15px; font-family: sans-serif;">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</p>
         </div>
         <div class="rabat"></div>
         <div class="corps-enveloppe"></div>
