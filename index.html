@@ -57,13 +57,14 @@
         
         .lettre {
             position: absolute;
-            /* ON REMONTE LA LETTRE POUR QU'ELLE NE DÉPASSE PLUS EN BAS */
-            bottom: 60px; 
+            /* On ajuste la position pour qu'elle soit bien au fond */
+            bottom: 20px; 
             left: 7%;
+            /* On réduit la hauteur de 75% à 60% pour qu'elle ne dépasse pas en haut */
             width: 86%;
-            height: 75%;
+            height: 60%; 
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 5px;
             z-index: 2;
             text-align: center;
@@ -91,14 +92,14 @@
 </head>
 <body>
 
-    <div class="titre-prenom">Raphaël</div>
+    <div class="titre-prenom">Omg un nouveau courrier de ta pf !!</div>
 
     <div class="enveloppe-wrapper" id="mail" onclick="this.classList.toggle('open')">
         <div class="lettre">
             <p>❤️</p>
-            <h1>Joyeuse Saint Valentin</h1>
-            <p>Tu es mon bonheur de chaque jour.</p>
-            <p>Je t'aime infiniment.</p>
+            <h1>Joyeuse Saint Valentin mon ange</h1>
+            <p>Je t'aime</p>
+            <p>J'avoue je me suis aidée de gemini, mais quand même hihi</p>
             <p style="font-size: 0.8em; margin-top: 15px; font-family: sans-serif;">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</p>
         </div>
         <div class="rabat"></div>
