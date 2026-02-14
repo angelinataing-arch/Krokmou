@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pour Raphaël ❤️</title>
     <style>
+        /* CONFIGURATION GÉNÉRALE */
         body {
             background-color: #b89782;
             margin: 0;
@@ -15,6 +16,7 @@
             justify-content: center;
             font-family: 'Brush Script MT', cursive;
             overflow: hidden;
+            position: relative;
         }
 
         .titre-prenom {
@@ -25,11 +27,13 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* L'ENVELOPPE */
         .enveloppe-wrapper {
             position: relative;
             width: 600px; 
             height: 420px;
             cursor: pointer;
+            z-index: 3;
         }
 
         .corps-enveloppe {
@@ -44,7 +48,6 @@
 
         .rabat {
             position: absolute;
-            /* On descend de 45px à 52px pour sceller l'enveloppe */
             top: 52px; 
             width: 100%;
             height: 65%; 
@@ -57,10 +60,8 @@
         
         .lettre {
             position: absolute;
-            /* On ajuste la position pour qu'elle soit bien au fond */
             bottom: 20px; 
             left: 7%;
-            /* On réduit la hauteur de 75% à 60% pour qu'elle ne dépasse pas en haut */
             width: 86%;
             height: 60%; 
             background: white;
@@ -88,83 +89,67 @@
 
         h1 { font-size: 2em; color: #ffb3c1; margin: 10px 0; }
         p { font-size: 1.4em; color: #b89782; margin: 5px 0; }
+
+        /* DÉCORATIONS ET PERSONNAGES */
+        .deco-image {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* LA PORTE AGRANDIE */
+        .porte-wrapper {
+            position: relative;
+            width: 100px;
+            height: 140px;
+            background: #8b5e3c;
+            border: 3px solid #5d3a24;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .porte-battant {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #a0785a;
+            border: 1px solid #5d3a24;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: left;
+            z-index: 2;
+        }
+
+        .porte-battant::after {
+            content: '';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            background: gold;
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .porte-ouverte .porte-battant {
+            transform: rotateY(-120deg);
+        }
+
+        .contenu-porte {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
     </style>
 </head>
-
-    <img src="fern.png" class="deco-image" style="top: 20px; left: 20px; width: 120px;">
-
-<div style="position: absolute; top: 20px; right: 20px; display: flex; align-items: flex-end; gap: 10px;">
-    <img src="dudu.png" style="width: 60px; height: auto;">
-    <img src="bubu.png" style="width: 60px; height: auto;">
-    
-    <div class="porte-wrapper" onclick="this.classList.toggle('porte-ouverte')">
-        <div class="contenu-porte">
-            <img src="insta_code.png" alt="Code" style="width: 100%; height: 100%; object-fit: contain;">
-        </div>
-        <div class="porte-battant"></div>
-    </div>
-</div>
-
-<img src="us.png" class="deco-image" style="bottom: 20px; right: 20px; width: 150px;">
-
-<style>
-    .deco-image {
-        position: absolute;
-        z-index: 5;
-        pointer-events: none;
-    }
-
-    /* Style de la porte */
-    .porte-wrapper {
-        position: relative;
-        width: 50px;
-        height: 70px;
-        background: #8b5e3c; /* Couleur du cadre de la porte */
-        border: 2px solid #5d3a24;
-        cursor: pointer;
-        perspective: 1000px;
-    }
-
-    .porte-battant {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: #a0785a;
-        border: 1px solid #5d3a24;
-        transition: transform 0.8s;
-        transform-origin: left;
-        z-index: 2;
-    }
-
-    /* Petite poignée */
-    .porte-battant::after {
-        content: '';
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        width: 6px;
-        height: 6px;
-        background: gold;
-        border-radius: 50%;
-    }
-
-    .porte-ouverte .porte-battant {
-        transform: rotateY(-110deg);
-    }
-
-    .contenu-porte {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-    }
-</style>
-    
 <body>
+
+    <img src="image-4.jpg" class="deco-image" style="top: 20px; left: 20px; width: 180px;">
 
     <div class="titre-prenom">Omg un nouveau courrier de ta pf !!</div>
 
@@ -173,11 +158,25 @@
             <p>❤️</p>
             <h1>Joyeuse Saint Valentin mon ange</h1>
             <p>Je t'aime</p>
-            <p>J'avoue je me suis aidée de gemini, mais quand même hihi</p>
             <p style="font-size: 0.8em; margin-top: 15px; font-family: sans-serif;">J'avoue je me suis aidée de Gemini, j'espère que tu apprécies quand même !</p>
         </div>
         <div class="rabat"></div>
         <div class="corps-enveloppe"></div>
+    </div>
+
+    <img src="image-5.jpg" class="deco-image" style="bottom: 0px; left: 20px; width: 250px;">
+
+    <div style="position: absolute; bottom: 20px; right: 30px; display: flex; align-items: flex-end; gap: 20px;">
+        <img src="image-3.png" style="width: 130px; height: auto;">
+        
+        <img src="image-2.png" style="width: 130px; height: auto;">
+        
+        <div class="porte-wrapper" onclick="this.classList.toggle('porte-ouverte')">
+            <div class="contenu-porte">
+                <img src="IMG_20260214_005317_427.png" alt="Code" style="width: 85%; height: 85%; object-fit: contain;">
+            </div>
+            <div class="porte-battant"></div>
+        </div>
     </div>
 
 </body>
